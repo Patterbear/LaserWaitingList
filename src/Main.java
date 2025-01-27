@@ -20,8 +20,8 @@ import static javax.swing.JOptionPane.showMessageDialog;
 public class Main {
 
     // Credentials for sending the patient details
-    private static final String sender = "***REMOVED***"; // DO NOT CHANGE
-    private static final String password = "***REMOVED***"; // DO NOT CHANGE
+    private static final String sender = "***REMOVED***";
+    private static final String password = "***REMOVED***";
 
     // Generic KGH waiting list email address which receives patients to be added
     // replace this with the real waiting list email
