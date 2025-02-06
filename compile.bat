@@ -1,3 +1,7 @@
+:: Download dependencies using curl
+curl -o lib/activation-1.1.1.jar https://repo1.maven.org/maven2/javax/activation/activation/1.1.1/activation-1.1.1.jar
+curl -o lib/javax.mail-1.6.2.jar https://repo1.maven.org/maven2/javax/mail/javax.mail-api/1.6.2/javax.mail-api-1.6.2.jar
+
 :: Compile Main.java
 javac -cp "lib/*" src/Main.java -d out/
 
