@@ -8,9 +8,9 @@ In the past, consultants in the department were required to fill out a paper for
 A portable desktop application written in Java that allows consultants to easily record and automatically send off patient details to be added to the waiting list system.
 
 ## Technologies Used
-- **JavaMail API** for automated emailing of formatted patient details to KGH's system
-- **JavaBeans Activation Framework** for managing MIME data
-- **Swing** for a dependency-free, cross-platform user interface
+- [**JavaMail API**](https://docs.oracle.com/javaee/7/api/javax/mail/package-summary.html) for automated emailing of formatted patient details to KGH's system
+- [**JavaBeans Activation Framework**](https://docs.oracle.com/javase/8/docs/api/javax/activation/package-summary.html) for managing MIME data
+- [**Swing**](https://docs.oracle.com/javase/8/docs/api///?javax/swing/package-summary.html) for a dependency-free, cross-platform user interface
 
 ## Usage
 The full release issued to the hospital is private, as it contains confidential internal emails. As such, the version in this repository contains placeholder email credentials that will prevent the email aspects from functioning.
