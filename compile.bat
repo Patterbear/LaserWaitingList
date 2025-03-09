@@ -18,7 +18,7 @@ cp -r ../out/* .
 cp -r ../res .
 
 :: Produce .jar file
-jar cfm ../WaitingList.jar ../META-INF/MANIFEST.MF .
+jar cfm ../LaserWaitingList.jar ../META-INF/MANIFEST.MF .
 
 :: Delete temporary folders
 cd ..

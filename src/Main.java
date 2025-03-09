@@ -60,7 +60,7 @@ public class Main {
         };
 
         for(int i = 0; i < inputtedData.length; i++) {
-            formattedData += labels[i] + ": " + inputtedData[i] + "\n";
+            formattedData += labels[i] + ": " + inputtedData[i] + "<br>";
         }
 
         return formattedData;
@@ -117,7 +117,9 @@ public class Main {
             message.setSubject("Patient for Laser Waiting List");
 
             MimeBodyPart textPart = new MimeBodyPart();
-            textPart.setText(data + "\n Sent by Benjamin McGregor's WaitingList Application");
+            String htmlContent = data + "<br> Sent by <a href='https://github.com/Patterbear'>Benjamin McGregor</a>'s LaserWaitingList Application";
+            textPart.setContent(htmlContent, "text/html");
+
 
             // Attach screenshot
             MimeBodyPart screenshotPart = new MimeBodyPart();
