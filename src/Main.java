@@ -78,10 +78,10 @@ public class Main {
         if (windowRect.width != screenSize.width || windowRect.height != screenSize.height) {
             // Trim sides if window not maximized (prevents other parts of the screen being captured)
             windowRect.setBounds(
-                    windowRect.x + 7,  // Trim 7px from left
-                    windowRect.y + 5,  // Trim 5px from top
-                    windowRect.width - 14,  // Trim 7px from right and left
-                    windowRect.height - 10  // Trim 5px from top and bottom
+                    windowRect.x + 7,
+                    windowRect.y + 5,
+                    windowRect.width - 14,
+                    windowRect.height - 10
             );
         }
 
@@ -184,8 +184,7 @@ public class Main {
     }
 
     // Submit function
-    // Just prints the formatted details to the terminal at the moment
-    // This is where IT will make it send the data to the database
+    // triggers the send email function and shows success message
     private static void submit(String consultant, String data, BufferedImage screenshot) {
         sendEmail(data, consultants.get(consultant), screenshot);
 
