@@ -74,7 +74,7 @@ public class Main {
         // Get screen size
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        // Trim sides if window not maximized (prevents other parts of the screen being captured)
+        // Trim capture area if window is not maximized to prevent other parts of the screen being captured
         if (windowRect.width != screenSize.width || windowRect.height != screenSize.height) {
             windowRect.setBounds(
                     windowRect.x + 7,
