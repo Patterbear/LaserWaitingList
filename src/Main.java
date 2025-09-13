@@ -146,21 +146,21 @@ public class Main {
 
     // Centre frame function
     // sets frame position to centre of screen
-    private static void centreFrame(Window frame) {
+    private static void centreWindow(Window window) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((screenSize.getWidth() - frame.getWidth()) / 2);
-        int y = (int) ((screenSize.getHeight() - frame.getHeight()) / 2);
+        int x = (int) ((screenSize.getWidth() - window.getWidth()) / 2);
+        int y = (int) ((screenSize.getHeight() - window.getHeight()) / 2);
 
-        frame.setLocation(x, y);
+        window.setLocation(x, y);
     }
 
     // Check no missing data function
     // returns true if no data is missing
     // otherwise, displays an error message and returns false
-    private static boolean checkNoMissingData(String[] data) {
+    private static boolean checkNoMissingData(JFrame window, String[] data) {
         for (String item : data) {
             if (item.isEmpty()) {
-                showMessageDialog(null, "Fields cannot be left empty.");
+                showMessageDialog(window, "Fields cannot be left empty.");
                 return false;
             }
         }
@@ -184,22 +184,22 @@ public class Main {
 
     // Submit function
     // triggers the send email function and shows success message
-    private static void submit(String consultant, String data, BufferedImage screenshot) {
+    private static void submit(JFrame window, String consultant, String data, BufferedImage screenshot) {
         sendEmail(data, consultants.get(consultant), screenshot);
 
-        showMessageDialog(null, "Patient added to the waiting list.");
+        showMessageDialog(window, "Patient added to the waiting list.");
     }
 
     // Check date formats function
     // verifies that inputted dates follow the dd/MM/yyyy format
-    private static boolean checkDateFormats(String[] dates) {
+    private static boolean checkDateFormats(JFrame window, String[] dates) {
         SimpleDateFormat correctFormat = new SimpleDateFormat("dd/MM/yyyy");
         correctFormat.setLenient(false);
 
         // check if it matches dd/MM/yyyy format
         for (String date : dates) {
             if (date.length() != 10) {
-                showMessageDialog(null, "Date '" + date + "' is invalid.");
+                showMessageDialog(window, "Date '" + date + "' is invalid.");
                 return false;
             }
 
@@ -207,7 +207,7 @@ public class Main {
                 correctFormat.parse(date);
 
             } catch (ParseException e) {
-                showMessageDialog(null, "Date '" + date + "' is invalid.");
+                showMessageDialog(window, "Date '" + date + "' is invalid.");
                 return false;
             }
         }
@@ -219,13 +219,13 @@ public class Main {
     public static void main(String[] args) {
 
         // Frame setup
-        JFrame frame = new JFrame("KGH Laser Waiting List");
-        frame.setResizable(true);
-        frame.setMinimumSize(new Dimension(900, 600));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame window = new JFrame("KGH Laser Waiting List");
+        window.setResizable(true);
+        window.setMinimumSize(new Dimension(900, 600));
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Image icon = Toolkit.getDefaultToolkit().getImage("res/icon.png");
-        frame.setIconImage(icon);
-        centreFrame(frame);
+        window.setIconImage(icon);
+        centreWindow(window);
 
         // Main panel
         JPanel mainPanel = new JPanel();
@@ -326,20 +326,20 @@ public class Main {
             };
 
             // Check for empty fields
-            if (checkNoMissingData(inputtedData)) {
+            if (checkNoMissingData(window, inputtedData)) {
 
                 // Verify dates are correct format
-                if (checkDateFormats(new String[]{clinicDateInput.getText(), DOBInput.getText(), appointmentDateInput.getText()})) {
+                if (checkDateFormats(window, new String[]{clinicDateInput.getText(), DOBInput.getText(), appointmentDateInput.getText()})) {
                     String consultantInitials = (String) consultantDropdown.getSelectedItem();
 
                     // Take screenshot
                     BufferedImage screenshot;
                     try {
-                        screenshot = takeScreenshot(frame);
+                        screenshot = takeScreenshot(window);
 
                         //Submit and reset window
                         clearInputs(middlePanel);
-                        submit(consultantInitials, formatData(inputtedData), screenshot);
+                        submit(window, consultantInitials, formatData(inputtedData), screenshot);
 
                     } catch (AWTException ex) {
                         System.err.println("Error taking screenshot");
@@ -419,7 +419,7 @@ public class Main {
         submitPanel.add(submitButton);
         mainPanel.add(submitPanel, BorderLayout.SOUTH);
 
-        frame.add(mainPanel);
-        frame.setVisible(true);
+        window.add(mainPanel);
+        window.setVisible(true);
     }
 }
